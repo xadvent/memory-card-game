@@ -1,47 +1,50 @@
-import './styles/App.css'
-import { useState, useEffect } from 'react'
+import './styles/App.css';
+import { useState, useEffect } from 'react';
 import Card from './components/Card';
 
 function App() {
   const [score, setScore] = useState(0);
-  const [characterList, setCharacterList] = useState([])
-  const [reset, setReset] = useState(true) // Change to false to have a "start" button
-  const [answers, setAnswers] = useState([])
+  const [characterList, setCharacterList] = useState([]);
+  const [reset, setReset] = useState(true); // Change to false to have a "start" button
+  const [answers, setAnswers] = useState([]);
 
-  const randomNumber = () => Math.floor(Math.random() * 1025)
+  const randomNumber = () => Math.floor(Math.random() * 1025);
   const addScore = () => setScore(score + 1);
   const changeReset = () => setReset(!reset);
 
   function resetAll() {
-    setScore(0)
-    setAnswers([])
-    changeReset()
+    setScore(0);
+    setAnswers([]);
+    changeReset();
   }
 
+  // eslint-disable-next-line no-unused-vars
   function guess(id) {
     if (answers.includes(id)) {
-      resetAll()
+      resetAll();
     } else {
-      let newAnswers = [...answers, id]
-      setAnswers(newAnswers)
+      let newAnswers = [...answers, id];
+      setAnswers(newAnswers);
     }
   }
 
   // ----------- Populating Character List ------------
   function populateCharList() {
     let newCharList = [];
-    for (let x = 0; x < 10; x++) {
-      newCharList.push(randomNumber());
-    }
+    for (let x = 0; x < 10; x++) newCharList.push(randomNumber());
     setCharacterList(newCharList);
   }
+
+  useEffect(() => {
+    populateCharList();
+  }, [])
 
   useEffect(() => {
     if (reset) {
       populateCharList();
       setReset(false);
     }
-  }, [reset]);
+  }, [reset])
   // --------------------------------------------------
 
   return (
@@ -60,8 +63,7 @@ function App() {
       <div id="footer">
       </div>
     </>
-  );
-
+  )
 }
 
 export default App
