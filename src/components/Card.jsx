@@ -13,19 +13,19 @@ const imgStyle = {
 
 const cardStyle = {
     border: "1px solid grey",
-    "border-radius": "20px",
+    "borderRadius": "20px",
     height: "200px",
     cursor: "pointer",
-    "-webkit-box-shadow": "0px 10px 28px -15px rgba(0,0,0,0.75)",
-    "-moz-box-shadow": "0px 10px 28px -15px rgba(0,0,0,0.75)",
-    "box-shadow": "0px 10px 28px -15px rgba(0,0,0,0.75)",
+    "WebkitBoxShadow": "0px 10px 28px -15px rgba(0,0,0,0.75)",
+    "MozBoxShadow": "0px 10px 28px -15px rgba(0,0,0,0.75)",
+    "boxShadow": "0px 10px 28px -15px rgba(0,0,0,0.75)",
 }
 
 
 const cardNameStyle = {
-    "margin-top": 30 + "px",
-    "font-weight": "bold",
-    "letter-spacing": 1.5 + "px",
+    "marginTop": 30 + "px",
+    "fontWeight": "bold",
+    "letterSpacing": 1.5 + "px",
 }
 
 async function getPokemon(idArr) {
