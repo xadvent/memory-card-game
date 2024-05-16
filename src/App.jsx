@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import './styles/App.css';
 import { useState, useEffect } from 'react';
 import Card from './components/Card';
@@ -9,7 +10,6 @@ function App() {
   const [answers, setAnswers] = useState([]);
 
   const randomNumber = () => Math.floor(Math.random() * 1025);
-  const addScore = () => setScore(score + 1);
   const changeReset = () => setReset(!reset);
 
   function resetAll() {
@@ -18,14 +18,16 @@ function App() {
     changeReset();
   }
 
-  // eslint-disable-next-line no-unused-vars
-  function guess(id) {
-    if (answers.includes(id)) {
-      resetAll();
-    } else {
-      let newAnswers = [...answers, id];
-      setAnswers(newAnswers);
-    }
+  function addAnswer(id) {
+    setAnswers((prevAnswers) => {
+      if (prevAnswers.includes(id)) {
+        resetAll();
+        return prevAnswers;
+      } else {
+        setScore((prevScore) => prevScore + 1);
+        return [...prevAnswers, id];
+      }
+    });
   }
 
   // ----------- Populating Character List ------------
@@ -52,12 +54,11 @@ function App() {
       <div id="header">
         <h1>Memory Game</h1>
         <div id="score-box">Score: {score}</div>
-        <button onClick={addScore}>Increase Score</button>
         <button onClick={resetAll}>Reset</button>
       </div>
 
       <div id="content">
-        <Card characterList={characterList} />
+        <Card characterList={characterList} addAnswer={addAnswer} />
       </div>
 
       <div id="footer">
@@ -66,4 +67,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
