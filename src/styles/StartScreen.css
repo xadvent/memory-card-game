@@ -1,0 +1,19 @@
+#start-screen>* {
+    transition: all 0.2s ease-in;
+}
+
+#start-screen>button {
+    min-width: 200px;
+}
+
+#start-screen {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+#start-button:hover {
+    background-color: rgba(4, 246, 89, 0.674);
+    border-color: rgba(4, 246, 89, 0.674);
+}

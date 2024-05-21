@@ -2,12 +2,15 @@
 import './styles/App.css';
 import { useState, useEffect } from 'react';
 import Card from './components/Card';
+import StartScreen from './components/StartScreen';
 
 function App() {
   const [score, setScore] = useState(0);
   const [characterList, setCharacterList] = useState([]);
   const [reset, setReset] = useState(true); // Change to false to have a "start" button
-  const [answers, setAnswers] = useState([]);
+  // eslint-disable-next-line no-unused-vars
+  const [_, setAnswers] = useState([]);
+  const [gameStarted, setGameStarted] = useState(false)
 
   const randomNumber = () => Math.floor(Math.random() * 1025);
   const changeReset = () => setReset(!reset);
@@ -30,10 +33,18 @@ function App() {
     });
   }
 
+  function startGame() {
+    setGameStarted(true)
+    populateCharList()
+  }
+
   // ----------- Populating Character List ------------
   function populateCharList() {
     let newCharList = [];
-    for (let x = 0; x < 10; x++) newCharList.push(randomNumber());
+    while (newCharList.length < 10){
+      let num = randomNumber();
+      !newCharList.includes(num) ? newCharList.push(num) : null
+    } 
     setCharacterList(newCharList);
   }
 
@@ -57,9 +68,14 @@ function App() {
         <button onClick={resetAll}>Reset</button>
       </div>
 
-      <div id="content">
-        <Card characterList={characterList} addAnswer={addAnswer} />
-      </div>
+        {gameStarted ? (
+          <div id="content">
+
+            <Card characterList={characterList} addAnswer={addAnswer} />
+          </div>
+        ) : (
+          <StartScreen startGame={startGame} />
+        )}
 
       <div id="footer">
       </div>
