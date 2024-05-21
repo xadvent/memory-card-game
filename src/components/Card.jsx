@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import './../styles/Card.css';
 import propTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 
 async function apiCall(id) {
     let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
@@ -38,8 +39,7 @@ function Card({ characterList, addAnswer }) {
                     id: response.id,
                     element: (
                         <div className="card" key={response.id} style={cardStyle} onClick={() => { addAnswer(response.id); shuffle() }}>
-                            <img src={response.sprites.other["official-artwork"].front_default} alt={response.name}
-                                style={imgStyle} />
+                            <img src={response.sprites.other["official-artwork"].front_default} alt={response.name} style={imgStyle} />
                             <div className="title" style={cardNameStyle}>{response.name.charAt(0).toUpperCase() + response.name.substring(1)}</div>
                         </div>
                     )
