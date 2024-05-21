@@ -1,17 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import './styles/App.css';
-import Sound from './assets/gb-startup.mp3'
-import { useState, useEffect } from 'react';
 import Card from './components/Card';
+import Sound from './assets/gb-startup.mp3'
 import StartScreen from './components/StartScreen';
+import { useState, useEffect } from 'react';
 
 const startSound = new Audio(Sound); // Adjust the path and ensure the file exists
 startSound.volume = 0.15
 
 function App() {
-  const [score, setScore] = useState(0);
   const [characterList, setCharacterList] = useState([]);
+  const [difficulty, setDifficulty] = useState(10);
   const [reset, setReset] = useState(true); // Change to false to have a "start" button
+  const [score, setScore] = useState(0);
+
   // eslint-disable-next-line no-unused-vars
   const [_, setAnswers] = useState([]);
   const [gameStarted, setGameStarted] = useState(false)
@@ -48,7 +50,7 @@ function App() {
   // ----------- Populating Character List ------------
   function populateCharList() {
     let newCharList = [];
-    while (newCharList.length < 10){
+    while (newCharList.length < difficulty){
       let num = randomNumber();
       !newCharList.includes(num) ? newCharList.push(num) : {}
     } 
@@ -77,11 +79,10 @@ function App() {
 
         {gameStarted ? (
           <div id="content">
-
             <Card characterList={characterList} addAnswer={addAnswer} />
           </div>
         ) : (
-          <StartScreen startGame={startGame} />
+          <StartScreen startGame={startGame} setDifficulty={setDifficulty} />
         )}
 
       <div id="footer">
