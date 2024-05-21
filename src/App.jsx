@@ -1,8 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import './styles/App.css';
+import Sound from './assets/gb-startup.mp3'
 import { useState, useEffect } from 'react';
 import Card from './components/Card';
 import StartScreen from './components/StartScreen';
+
+const startSound = new Audio(Sound); // Adjust the path and ensure the file exists
+startSound.volume = 0.15
 
 function App() {
   const [score, setScore] = useState(0);
@@ -36,6 +40,9 @@ function App() {
   function startGame() {
     setGameStarted(true)
     populateCharList()
+    startSound.play().catch((error) => {
+      console.error("Error playing audio:", error);
+    });
   }
 
   // ----------- Populating Character List ------------
@@ -43,7 +50,7 @@ function App() {
     let newCharList = [];
     while (newCharList.length < 10){
       let num = randomNumber();
-      !newCharList.includes(num) ? newCharList.push(num) : null
+      !newCharList.includes(num) ? newCharList.push(num) : {}
     } 
     setCharacterList(newCharList);
   }
