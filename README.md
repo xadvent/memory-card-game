@@ -16,7 +16,7 @@ Welcome to the Memory Game, a dynamic and engaging web application designed to t
 
 
 ## Project Overview
-The Memory Game is an interactive, browser-based game that challenges players to match pairs of cards. Designed to improve cognitive skills, it provides an interactive and visually appealing game experience suitable for all age groups.
+The Memory Game is an interactive, browser-based game that challenges players to select new cards in succession - ignoring prior choices. Designed to improve cognitive skills, it provides an interactive and visually appealing game experience suitable for all age groups.
 
 
 ## Key Features

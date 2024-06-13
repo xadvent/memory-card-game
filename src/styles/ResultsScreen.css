@@ -1,0 +1,33 @@
+@keyframes shake {
+    0% {
+        transform: translateY(-10px);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+.holder {
+    display: flex;
+    flex-direction: row;
+}
+
+.won-span,
+.loss-span {
+    animation: shake 1s ease-in-out infinite;
+    margin: 0px 20px;
+    letter-spacing: 2px;
+}
+
+.won-span {
+    color: green;
+}
+
+.loss-span {
+    color: red;
+}
